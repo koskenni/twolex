@@ -35,8 +35,8 @@ for r in rdr:
         else:
             print(":{} {};".format(r['MPHON'], n))
 
-feafile = open("affixmultich.py", 'w')
-print("multichars =", multichars, file=feafile)
-print("nexts =", nexts, file=feafile)
-feafile.close()
+#feafile = open("affixmultich.py", 'w')
+#print("multichars =", multichars, file=feafile)
+#print("nexts =", nexts, file=feafile)
+#feafile.close()
     

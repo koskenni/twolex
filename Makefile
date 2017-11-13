@@ -27,6 +27,9 @@ fin-guess.fst: fin-guess-lex.fst rul.m2s.fst delete.fst Makefile
 guesser.fst: fin-guess.fst Makefile
 	hfst-invert -i $< | hfst-minimize | hfst-fst2fst -O -o $@
 
+rul.m2s.fst: rul.m2s.twolc
+	hfst-twolc < $< -D -o $@
+
 samp-words.lexc: ksk-v-samp.dic ksk2lexc.py converter.fst affixmultich.py Makefile
 	python3 ksk2lexc.py -l $@ < $< 
 

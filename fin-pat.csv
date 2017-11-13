@@ -1,7 +1,7 @@
 ID;NEXT;MPHON;COMMENT
 Define;Vo;[a|e|i|o|u|y|ä|ö];All vowels
 Define;Co;[b|c|d|f|g|h|j|k|l|m|n|p|q|r|s|š|t|v|w|x|z|ž];All consonants
-Define;Gwk;[(l|r|n) k 0:{kØ} | (h|l|r) 0:{kØ} | n g:{kg}];Weak k : morphophoneme
+Define;Gwk;[(l|r|n) k 0:{kØ}|(h|l|r) 0:{kØ}|n g:{kg}];Weak k : morphophoneme
 Define;Gwp;[m m:{pm} | (l|r) v:{pv} | (l|r|m) p 0:{pØ}];Weak p : morphophoneme
 Define;Gwt;[(h) d:{td}|l l:{tl}|n n:{tn}|r r:{tr}|(l|r|n) t 0:{tØ}];Weak t : morphophoneme
 Define;Gw;[Gwk|Gwp|Gwt];Gradating weak cons : morphophoneme
@@ -91,9 +91,9 @@ Root;V01;<Co* Vo+ (Sy1)* Co* [o|ö|u|y] [a:0|ä:0]>;PUNOA
 ;V41;<Co* [a|i|o|u] Co+ i:0 s:0 t:0 [a:0|ä:0]>;KIHISTÄ-KIHAJAN kih-ise/v
 ;V41ä;<Co* [e|y|ä|ö] Co+ i:0 s:0 t:0 ä:0>;ÖLISTÄ-ÖLÄJÄN öl-ise/v
 ;V42n;<Co* [Vo|VV] (Sy1) n:0 t:0 [a:0 a:0|ä:0 ä:0]>;RAKENTAA rake-nTA/v
-;V42;<(Co) [Vo|VV] (Sy1) t:0 [a:0|ä:0]>;RIETÄ rie-tA/v
-;V43;<t a i t:{tds} a:0 a:0>;TAITAA tai-TA/v
-;V43;<t i e t:{tds} ä:0 ä:0>;TIETAA tai-TA/v 
+;V42;<(Co) [Vo|VV] (Sy1) t:0 [a:0|ä:0]>;RIETÄ rie-ntA/v
+;V43;<t a i t:0 a:0 a:0>;TAITAA tai-TA/v
+;V43;<t i e t:0 ä:0 ä:0>;TIETAA tai-TA/v 
 ;V44;<Co* [Vo|VV] (Sy1)+ [u t:0 u:0 a:0|y t:0 y:0 ä:0]>;ANTAUTUA antau-TU/v
 ;V44;<Co* [Vo|VV] (Sy1)+ [u t:0 a:0|y t:0 ä:0]>;PYSÄYTÄ antau-TU/v
 ;V45;<Co [Vo|VV] t:0 [a:0|ä:0]>;KAATA kaa-TA/v

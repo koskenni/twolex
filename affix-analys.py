@@ -41,8 +41,8 @@ for r in rdr:
             else:
                 print("{}{}:{} {};".format(r['BASEF'], f, r['MPHON'], n))
 
-feafile = open("affixmultich.py", 'w')
-print("features =",features, file=feafile)
-print("multichars =", multichars, file=feafile)
-feafile.close()
+#feafile = open("affixmultich.py", 'w')
+#print("features =",features, file=feafile)
+#print("multichars =", multichars, file=feafile)
+#feafile.close()
     
