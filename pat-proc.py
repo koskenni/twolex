@@ -103,6 +103,7 @@ patrdr = csv.DictReader(patfile, delimiter=';')
 prevID = ";;;"
 for r in patrdr:
     i, nx, mfon = r['ID'], r['NEXT'], r['MPHON']
+    if i != "" and i[0] == '!': continue
     id = prevID if i == '' else i
     prevID = id
     if id == "Define":

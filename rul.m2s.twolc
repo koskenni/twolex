@@ -36,20 +36,7 @@ Alphabet
  %|:Ø
  §:Ø %-
  %=:Ø
- %+1PL %+1SG %+2PL %+2SG %+3PL %+3SG %+4PE
- %+A %+ABE %+ABL %+ACT %+ADE %+ALL
- %+CMP %+CMT %+COND
- %+DVMA %+DVMI
- %+ELA %+ESS
- %+GEN
- %+ILL %+IMPV %+INE %+INF1 %+INF2 %+INS %+MAN
- %+N %+NEG
- %+NOM
- %+PAST %+PCP1 %+PCP2 %+PCP3 %+PL %+PL1 %+PL2 %+PL3 %+POS
- %+POTN %+PRES %+PSS %+PTV
- %+SG %+SG1 %+SG2 %+SG3 %+SUP
- %+TRA
- %+V
+ %+1PL %+1SG %+2PL %+2SG %+3PL %+3SG %+4PE %+A %+ABE %+ABL %+ACT %+ADE %+ALL %+CMP %+CMT %+COND %+DVMA %+DVMI %+ELA %+ESS %+GEN %+ILL %+IMPV %+INE %+INF1 %+INF2 %+INS %+MAN %+N %+NEG %+NOM %+PAST %+PCP1 %+PCP2 %+PCP3 %+PL %+PL1 %+PL2 %+PL3 %+POS %+POTN %+PRES %+PSS %+PTV %+SG %+SG1 %+SG2 %+SG3 %+SUP %+TRA %+V
   ;
 
 Rule-variables
@@ -107,8 +94,10 @@ Rules
 %{kØ%'%}:k /<= _ :Vowel Closed ;
 
 "taloss<a>" 
-%{aä%}:a | %{aäØ%}:a <=> [:a | :o | :u] \[%=: | %|: | %_: | #:]* _ ;
-                         except _ [%{ij%}: | %{i%}:] ;
+%{aä%}:a | %{aäØ%}:a | %{aØe%}:a | %{aØe%}:Ø | %{aØe%}:e  => [:a | :o | :u] \[%=: | %|: | %_: | #:]* _ ;
+"työss<ä>" 
+%{aä%}:ä | %{aäØ%}:ä | %{äØe%}:ä | %{äØe%}:Ø | %{äØe%}:e /<= [:a | :o | :u] \[%=: | %|: | %_: | #:]* _ ;
+
 
 "rakent<a>vat"
 %{aäØe%}:a => [:a | :o | :u] \[%=: | %|: | %_: | #:]* _ ;

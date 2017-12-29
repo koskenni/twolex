@@ -84,10 +84,10 @@ Root;V01;<Co* Vo+ (Sy1)* Co* [o|ö|u|y] [a:0|ä:0]>;PUNOA
 ;V38*;<Co* [Vo|VV] Gw [o t:0 a:0|ö t:0 ä:0]>;TAUOTA koho-A/v 
 ;V39;<Co* [Vo|VV] Co+ [u t:0 a:0|y t:0 ä:0]>;HALUTA halu-A/v 
 ;V39*;<Co* [Vo|VV] Gw [u t:0 a:0|y t:0 ä:0]>;RYÖPYTÄ halu-A/v 
-;V35;<Co* [Vo|VV] Co+ [a t:0 a:0|ä t:0 ä:0]>;PALATA-PALAJAN pala-V/v V40 
-;V35;<Co* [Vo|VV] Co+ [a j:0 a:0 a:0|ä j:0 ä:0 ä:0]>;HUMAJAA-? pala-V/v V40
-;V35*;<Co* [Vo|VV] Gw [a t:0 a:0|ä t:0 ä:0]>;KAIVATA-KAIPAJAN pala-V/v V40*
-;V35*;<(Co) Vo Gwj ä t:0 ä:0>;HYLJÄTÄ pala-V/v V40*
+;V40;<Co* [Vo|VV] Co+ [a t:0 a:0|ä t:0 ä:0]>;PALATA-PALAJAN pala-V/v V40 
+;V40;<Co* [Vo|VV] Co+ [a j:0 a:0 a:0|ä j:0 ä:0 ä:0]>;HUMAJAA-? pala-V/v V40
+;V40*;<Co* [Vo|VV] Gw [a t:0 a:0|ä t:0 ä:0]>;KAIVATA-KAIPAJAN pala-V/v V40*
+;V40*;<(Co) Vo Gwj ä t:0 ä:0>;HYLJÄTÄ pala-V/v V40*
 ;V41;<Co* [a|i|o|u] Co+ i:0 s:0 t:0 [a:0|ä:0]>;KIHISTÄ-KIHAJAN kih-ise/v
 ;V41ä;<Co* [e|y|ä|ö] Co+ i:0 s:0 t:0 ä:0>;ÖLISTÄ-ÖLÄJÄN öl-ise/v
 ;V42n;<Co* [Vo|VV] (Sy1) n:0 t:0 [a:0 a:0|ä:0 ä:0]>;RAKENTAA rake-nTA/v
@@ -95,5 +95,5 @@ Root;V01;<Co* Vo+ (Sy1)* Co* [o|ö|u|y] [a:0|ä:0]>;PUNOA
 ;V43;<t a i t:0 a:0 a:0>;TAITAA tai-TA/v
 ;V43;<t i e t:0 ä:0 ä:0>;TIETAA tai-TA/v 
 ;V44;<Co* [Vo|VV] (Sy1)+ [u t:0 u:0 a:0|y t:0 y:0 ä:0]>;ANTAUTUA antau-TU/v
-;V44;<Co* [Vo|VV] (Sy1)+ [u t:0 a:0|y t:0 ä:0]>;PYSÄYTÄ antau-TU/v
-;V45;<Co [Vo|VV] t:0 [a:0|ä:0]>;KAATA kaa-TA/v
+!;V44;<Co* [Vo|VV] (Sy1)+ [u t:0 a:0|y t:0 ä:0]>;PYSÄYTÄ antau-TU/v
+;V45;<Co VV t:0 [a:0|ä:0]>;KAATA kaa-TA/v
