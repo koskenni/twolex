@@ -17,7 +17,7 @@ outf = open(args.lexc, "w")
 entrylist = []
 multich = set()
 def find_multichars(str):
-    lst = re.findall(r"\{[a-zåäöšžØ]+\}", str)
+    lst = re.findall(r"\{[a-zåäöšžØ']+\}", str)
     for sym in lst:
         multich.add(sym)
 import affixmultich
@@ -25,6 +25,8 @@ linenum = 0
 for linenl in sys.stdin:
     linenum += 1
     line = linenl.strip()
+    if re.search(r"[/!Y]", line):
+        continue
     lst = line.split(" ")
     if len(lst) < 2:
         print("LINE", linenum,
@@ -35,7 +37,7 @@ for linenl in sys.stdin:
         infl = lst[1] + lst[2]
     else:
         infl = lst[1]
-    if not re.match(r"^[a-zšžåäö]+$", word) and re.match(r"^V[0-9][0-9][*]?", infl):
+    if not re.match(r"^[a-zšžåäö']+$", word) and re.match(r"^V[0-9][0-9][*]?", infl):
         print("", linenum, ":", '"' + line + '"')
         continue
     if infl == "V41" and re.match(r"^[hjklmnprstv]*[äöye].*t[aä]$", word):

@@ -1,9 +1,13 @@
 ID;NEXT;MPHON;FEAT;BASEF;FLAG;COMMENT
-/v;v0123;;;{dlnrtØ}{aä};;V01...V29 except V16V23
+/v;v0123;;;{dlnrtØ}{aä};;V01...V27 except V16V23
 lä-hte/v;v0123;h{td}{eiØ};;h{td}{eiØ}{dlnrtØ}{aä};;V16 LÄHTEÄ
 ;v12;ks;;h{td}{eiØ}{dlnrtØ}{aä};;
 kä-y/v;v03;y;;y{dlnrtØ}{aä};;V23 KÄYDÄ
 ;v12;v;;y{dlnrtØ}{aä};;
+katsel-e/v;v0123;{eØ};;{eØ}{dlnrtØ}{aä};;V28 KATSELE
+;v2;e;;{eØ}{dlnrtØ}{aä}; ;katseleisi
+arva-ile/v;v0123;il{eØ};;il{eØ}{dlnrtØ}{aä};;V29 KATSELE
+;v2;ele;;il{eØ}{dlnrtØ}{aä}; ;arvaeleisi
 haravo-i/v;v0123;{iØ};;i{dlnrtØ}{aä};;V30 HARAVOIDA
 ;v012;its{eØ};;i{dlnrtØ}{aä};;
 ;v3;i{nt};;i{dlnrtØ}{aä};;
@@ -44,25 +48,25 @@ kih-ise/v;v012;is{eØ};;ist{aä};;V41 KIHISTÄ
 öl-ise/v;v012;is{eØ};;ist{aä};;V41 ÖLISTÄ
 ;v3;is;;ist{aä};;
 ;v012;äj{äØ};;ist{aä};;
-rake-nTA/v;v0 v2 v3;n{tn}{aäØe};;nt{aä}{aä};;V42n RAKENTAA
+rake-nTA/v;v023;n{tn}{aäØe};;nt{aä}{aä};;V42n RAKENTAA
 ;v1;ns;;nt{aä}{aä};; 
 ;v1;nt;;nt{aä}{aä};; 
 ;v3;{nt};;nt{aä}{aä};;
-rie-nTA/v;v0 v2 v3;n{tn}{aäØe};;t{aä};;V42 RIETÄ
-;v1;ns;;t{aä};;
-;v1;nt;;t{aä};;
-;v3;{nt};;t{aä};;
-tai-TA/v;v023;{td}{aäØe};;t{aä}{aä};;V43 TAITAA
-;v1;s;;t{aä}{aä};;
-;v3;{nt};;t{aä}{aä};;
-antau-TU/v;v0123;{td}{uy};;t{uy}{aä};;V44 ANTAUTUA
-;v1;s;;t{uy}{aä};;imperfekti
-;Person;;;t{uy}{aä};;preesens
-;v3;{nt};;t{uy}{aä};;nämä menevät väärin!!
-;v2;;;t{uy}{aä};;konditionaali
-kaa-TA/v;v02;{td}{aäØ};;t{aä};;V45 KAATA
-;v1;s;;t{aä};;
-;v3;{nt};;t{aä};;
+rie-nTA/v;v023;n{tn}{aäØe};;{nt}{aä};;V42 RIETÄ
+;v1;ns;;{nt}{aä};;
+;v1;nt;;{nt}{nt}{aä};;
+;v3;{nt};;{nt}{aä};;
+tai-TA/v;v023;{td}{aäØe};;{nt}{aä}{aä};;V43 TAITAA
+;v1;s;;{nt}{aä}{aä};;
+;v3;{nt};;{nt}{aä}{aä};;
+antau-TU/v;v0123;{td}{uy};;{nt}{uy}{aä};;V44 ANTAUTUA
+;v1;s;;{nt}{uy}{aä};;imperfekti
+;Person;;;{nt}{uy}{aä};;preesens
+;v3;{nt};;{nt}{uy}{aä};;nämä menevät väärin!!
+;v2;;;{nt}{uy}{aä};;konditionaali
+kaa-TA/v;v02;{td}{aäØ};;{nt}{aä};;V45 KAATA
+;v1;s;;{nt}{aä};;
+;v3;{nt};;{nt}{aä};;
 v0123;v0 v1 v2 v3;;;;;
 v012;v0 v1 v2;;;;;  
 v023;v0 v2 v3;;;;;

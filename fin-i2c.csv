@@ -34,9 +34,9 @@ V24*;/v;
 V25;/v;TULLA
 V26;/v;PURRA
 V27;/v;MENNÄ
-V28;/v;KATSELLA
-V28*;/v;
-V29;/v;ARVAILLA
+V28;katsel-e/v;KATSELLA
+V28*;katsel-e/v;
+V29;arva-ile/v;ARVAILLA
 V30;haravo-i/v;
 V31;vali-tse/v;
 V32;juo-kse/v;
@@ -53,12 +53,13 @@ V38;koho-A/v;
 V38*;koho-A/v;  
 V39;halu-A/v;
 V39*;halu-A/v;
-V40;sala-A/v;PALATA pala-V/v
-V40*;sala-A/v;PALATA pala-V/v
+V40;pala-V/v;PALATA pala-V/v | sala-V/v
+V40*;pala-V/v;PALATA pala-V/v
 V41;kih-ise/v;
+V41*;kih-ise/v;RAVISTA-RAPAJAA
 V41ä;öl-ise/v;
-V42n;rake-nTA/v;
-V42;rie-nTA/v;
+V42n;rake-nTA/v;rake-nTA/v
+V42;rake-nTA/v;rie-nTA/v
 V43;tai-TA/v;
 V44;antau-TU/v;
 V45;kaa-TA/v;
