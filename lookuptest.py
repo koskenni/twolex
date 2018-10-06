@@ -23,6 +23,7 @@ fst = fil.read()
 print("\nENTER FORMS OF A WORD:\n")
 while True:
     remaining = set()
+    weight = {}
     first = True
     while True:
         linenl = sys.stdin.readline()
@@ -38,6 +39,10 @@ while True:
         entries = set()
         for r,w in res:
             entries.add(r)
+            if r in weight:
+                weight[r] = min(w, weight[r])
+            else:
+                weight[r] = w
         if first:
             first = False
             remain = entries
@@ -53,7 +58,8 @@ while True:
         elif len(remain) == 0:
             print("DOES NOT FIT! IGNORED.")
         else:
-            print("        ", remain)
+            rml = [(e, weight[e]) for e in remain]
+            print("        ", rml)
             remaining = remain
 
 

@@ -20,9 +20,14 @@ import hfst, sys, argparse
 
 argparser = argparse.ArgumentParser("python3 corpguesser.py",
                                     description="Produces lexicon entries using also corpus data")
-argparser.add_argument("-g", "--guesser", default="fin-guess.fst")
-argparser.add_argument("-c", "--corp_entries", default="../guessing/r-guesser.fst")
-argparser.add_argument("-u", "--unique", type=int, default=0)
+argparser.add_argument("-g", "--guesser",
+                        default="fin-guess.fst",
+                        help="a guesser fst")
+argparser.add_argument("-c", "--corp-entries",
+                        default="../guessing/r-guesser.fst",
+                        help="fst composed out of a word list fst and a guesser fst")
+argparser.add_argument("-u", "--unique", type=int, default=0,
+                        help="if > 0 then accept an entry which has a sufficient set of word forms in corpus")
 args = argparser.parse_args()
 
 guesser_fil = hfst.HfstInputStream(args.guesser)
@@ -73,13 +78,21 @@ print("\nENTER FORMS OF A WORD:\n")
 while True:
     word_form = nextline()
     res = guesser_fst.lookup(word_form, output="tuple")
-    remaining = set([r for r,w in res])
+    remaining = set()
+    weight = {}
+    for r,w in res:
+        remaining.add(r)
+        weight[r] = w
     dic = {}
     for entry in remaining:
         words = check_corp(entry, word_form)
+        if args.unique > 1:
+            print(' '*8, entry, words)
         dic[entry] = set(words)
     di = list(dic.items())
     ce_list = [(e, ws) for (e, ws) in di if ws]
+    max_len = max([len(ws) for e,ws in ce_list])
+    #print("celist:", ce_list)###
     best_len = -1
     i = 0
     entry_list = []
@@ -92,10 +105,10 @@ while True:
             i = i + 1
             entry_list.append((e,ws))
             print(" "*4+"(", i, ") <<", e, ">>", ", ".join(list(ws)))
-    if args.unique > 0 and best_len > 0:
+    if args.unique > 0 and best_len >= max_len:
         remaining = set([best_ent])
     else:
-        print(" "*8, remaining)
+        print(" "*8, [(e, weight[e]) for e in remaining])
     while len(remaining) > 1:
         line = nextline()
         if line == "":
@@ -115,9 +128,10 @@ while True:
             print("DOES NOT FIT! IGNORED.")
             remaining = saved
         elif len(remaining) > 1:
-            print(" "*8, remaining, "\n")
+            print(" "*8, [(e, weight[e]) for e in remaining], "\n")
 
     if len(remaining) == 1:
+        e = list(remaining)[0]
         print("\n" + "="*18)
-        print(list(remaining)[0], ";")
+        print(e, ";", weight[e])
         print("="*18 + "\n")

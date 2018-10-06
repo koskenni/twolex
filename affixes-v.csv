@@ -6,7 +6,7 @@ kä-y/v;v03;y;;y{dlnrtØ}{aä};;V23 KÄYDÄ
 ;v12;v;;y{dlnrtØ}{aä};;
 katsel-e/v;v0123;{eØ};;{eØ}{dlnrtØ}{aä};;V28 KATSELE
 ;v2;e;;{eØ}{dlnrtØ}{aä}; ;katseleisi
-arva-ile/v;v0123;il{eØ};;il{eØ}{dlnrtØ}{aä};;V29 KATSELE
+arva-ile/v;v0123;il{eØ};;il{eØ}{dlnrtØ}{aä};;V29 ARVAILLA
 ;v2;ele;;il{eØ}{dlnrtØ}{aä}; ;arvaeleisi
 haravo-i/v;v0123;{iØ};;i{dlnrtØ}{aä};;V30 HARAVOIDA
 ;v012;its{eØ};;i{dlnrtØ}{aä};;
@@ -42,31 +42,31 @@ pala-V/v;v02;{VØ};;{nt}{dlnrtØ}{aä};;V40 PALATA KAIVATA
 ;v1;s;;{nt}{dlnrtØ}{aä};;
 ;v3;{nt};;{nt}{dlnrtØ}{aä};;
 ;v02;j{aä};;{nt}{dlnrtØ}{aä};;
-kih-ise/v;v012;is{eØ};;ist{aä};;V41 KIHISTÄ
-;v3;is;;ist{aä};;
-;v012;aj{aØ};;ist{aä};;
-öl-ise/v;v012;is{eØ};;ist{aä};;V41 ÖLISTÄ
-;v3;is;;ist{aä};;
-;v012;äj{äØ};;ist{aä};;
-rake-nTA/v;v023;n{tn}{aäØe};;nt{aä}{aä};;V42n RAKENTAA
-;v1;ns;;nt{aä}{aä};; 
-;v1;nt;;nt{aä}{aä};; 
-;v3;{nt};;nt{aä}{aä};;
+kih-ise/v;v012;is{eØ};;is{dlnrtØ}{aä};;V41 KIHISTÄ
+;v3;is;;is{dlnrtØ}{aä};;
+;v012;aj{aØ};;is{dlnrtØ}{aä};;
+öl-ise/v;v012;is{eØ};;is{dlnrtØ}{aä};;V41 ÖLISTÄ
+;v3;is;;is{dlnrtØ}{aä};;
+;v012;äj{äØ};;is{dlnrtØ}{aä};;
+rake-nTA/v;v023;n{tn}{aäØe};;nt{aä}{dlnrtØ}{aä};;V42n RAKENTAA
+;v1;ns;;nt{aä}{dlnrtØ}{aä};; 
+;v1;nt;;nt{aä}{dlnrtØ}{aä};; 
+;v3;{nt};;nt{aä}{dlnrtØ}{aä};;
 rie-nTA/v;v023;n{tn}{aäØe};;{nt}{aä};;V42 RIETÄ
 ;v1;ns;;{nt}{aä};;
 ;v1;nt;;{nt}{nt}{aä};;
 ;v3;{nt};;{nt}{aä};;
-tai-TA/v;v023;{td}{aäØe};;{nt}{aä}{aä};;V43 TAITAA
-;v1;s;;{nt}{aä}{aä};;
-;v3;{nt};;{nt}{aä}{aä};;
-antau-TU/v;v0123;{td}{uy};;{nt}{uy}{aä};;V44 ANTAUTUA
-;v1;s;;{nt}{uy}{aä};;imperfekti
-;Person;;;{nt}{uy}{aä};;preesens
-;v3;{nt};;{nt}{uy}{aä};;nämä menevät väärin!!
-;v2;;;{nt}{uy}{aä};;konditionaali
-kaa-TA/v;v02;{td}{aäØ};;{nt}{aä};;V45 KAATA
-;v1;s;;{nt}{aä};;
-;v3;{nt};;{nt}{aä};;
+tai-TA/v;v023;{td}{aäØe};;{nt}{aä}{dlnrtØ}{aä};;V43 TAITAA
+;v1;s;;{nt}{aä}{dlnrtØ}{aä};;
+;v3;{nt};;{nt}{aä}{dlnrtØ}{aä};;
+antau-TU/v;v0123;{td}{uy};;{td}{uy}{dlnrtØ}{aä};;V44 ANTAUTUA
+;v1;s;;{td}{uy}{dlnrtØ}{aä};;imperfekti
+;Person;;;{td}{uy}{dlnrtØ}{aä};;preesens
+;v3;{nt};;{td}{uy}{dlnrtØ}{aä};;nämä menevät väärin!!
+;v2;;;{td}{uy}{dlnrtØ}{aä};;konditionaali
+kaa-TA/v;v02;{td}{aäØ};;{nt}{dlnrtØ}{aä};;V45 KAATA
+;v1;s;;{nt}{dlnrtØ}{aä};;
+;v3;{nt};;{nt}{dlnrtØ}{aä};;
 v0123;v0 v1 v2 v3;;;;;
 v012;v0 v1 v2;;;;;  
 v023;v0 v2 v3;;;;;

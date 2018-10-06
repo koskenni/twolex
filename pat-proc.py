@@ -23,12 +23,14 @@ multichs = set()
 definitions = OrderedDict()
 
 patterns = OrderedDict()
-
-conts = OrderedDict()
+pattern_lst = [] # a list of tuples (cont, iclass, expr, weight, comment)
+singleton_lst = [] # list of tuples (cont, iclass, input, output, weight, comment)
+cont_set = set()
+iclass_set = set()
 
 def extract_multichs(regexp):
     global multichs, definitions
-    rege = re.sub(r"([][()|+*: ]|\.[iul]|\.o\.)+", ",", regexp)
+    rege = re.sub(r"([][()|\$\&\-\+*: ]|\.[iul]|\.o\.)+", ",", regexp)
     lst = re.split(r",", rege)
     for nm in lst:
         if len(nm) > 1 and (nm not in definitions):
@@ -36,11 +38,11 @@ def extract_multichs(regexp):
     return
 
 def add_perc(str):
-    return re.sub(r"([{}])", r"%\1", str)
+    return re.sub(r"([{'}])", r"%\1", str)
 
 def proj_down_regex(str):
-    lst = re.split(r"([\]\[\|\+\* ]+|\.[iul]|\.o\.)", str)
-    downlst = [re.sub(r"([a-zåäöøØ0]):({[a-zåäöøØ]+}|0)", r"\2", el) for el in lst]
+    lst = re.split(r"([\]\[\|\-\+\* ]+|\.[iul]|\.o\.)", str)
+    downlst = [re.sub(r"([a-zåäö'øØ0]):({[a-zåäö'øØ]+}|0)", r"\2", el) for el in lst]
     reslst = [re.sub(r"^0$", r"", el) for el in downlst]
     res = "".join(reslst)
     res = re.sub(r"\s+\[\s*\|\s*\]\s*", r" ", res)
@@ -48,31 +50,34 @@ def proj_down_regex(str):
     res = re.sub(r"\s+$", r"", res)
     return res
 
-def invert_regex(str):
-    lst = re.split(r"([\]\[\|\+\* ]|\.[iul]|\.o\.)+", str)
-    invlst = [re.sub(r"([a-zåäöø0]):({[a-zåäöø]+})", r"\2:\1", el) for el in lst]
-    invlst = [re.sub(r"0", r"ø", el) for el in invlst]
-    return "".join(invlst)
-
 def ksk2entrylex():
-    for name in conts:
-        multichs.add(name)
+    global multichs
+    for cont in cont_set:
+        multichs.add(cont)
+    multichs = multichs | iclass_set
     print("Multichar_Symbols")
     print(" ", " ".join(sorted(multichs)))
     print("Definitions")
     for dn in definitions.keys():
         print(" ", dn, "=", add_perc(definitions[dn]), ";")
     print("LEXICON Root")
-    for name in sorted(patterns.keys()):
-        for pat in patterns[name]:
-            print("<", add_perc(pat), ">", name, ";")
-    for name in conts:
-        print("LEXICON", name)
-        print(re.sub(r"(0)", r"%\1", name) + ":% " + conts[name], "# ;")
+    for cont, iclass, input, output, weight, comment in singleton_lst:
+        w = ' "weight: ' + weight + '"' if weight else ""
+        i_class = re.sub(r"([0*])", r"%\1", iclass)
+        print(input + i_class + ":" + output ,
+                  cont, w, '; !', comment)
+    for cont, iclass, pat, weight, comment in pattern_lst:
+        w = ' "weight: ' + weight + ' "' if weight else ""
+        i_class = re.sub(r"([*])", r"%\1", iclass)
+        print("<", add_perc(pat[1:-1]),
+                  i_class + ":0 >",
+                  cont, w, "; !", comment)
+    for cont in sorted(list(cont_set)):
+        print("LEXICON", cont)
+        print(":% " + cont, "# ;")
     return
 
 def ksk2guesserlex():
-    global conts, patterns
     import affixmultich
     print("Multichar_Symbols")
     print(" ", " ".join(sorted(multichs |
@@ -83,53 +88,60 @@ def ksk2guesserlex():
         downde = proj_down_regex(definitions[dn])
         print(" ", dn, "=", add_perc(downde), ";")
     print("LEXICON Root")
-    for name in patterns:
-        for pat in patterns[name]:
-            downpat = proj_down_regex(pat)
-            print("<", add_perc(downpat), ">", conts[name], ";")
+    for cont, iclass, input, output, weight, comment in singleton_lst:
+        w = ' "weight: ' + weight + '"' if weight else ""
+        print(output, cont, w, '; !', comment)
+    for cont, iclass, pat, weight, comment in pattern_lst:
+        w = '"weight: '+weight+'"' if weight else ""
+        downpat = proj_down_regex(pat[1:-1])
+        print("<", add_perc(downpat), ">", cont, w, ";")
     return
 
 argparser = argparse.ArgumentParser("python3 di2mi-to-di2mi.py",
-                                        description="Writes either a converter or a guesser")
-argparser.add_argument("-p", "--patterns")
-argparser.add_argument("-c", "--continuations")
+                                    description="Writes either a converter or a guesser")
+argparser.add_argument("-p", "--patterns",
+                           help="A csv input file containing the patterns")
+argparser.add_argument("-c", "--classes",
+                           default="infl-codes.text",
+                           help="output file containing inflectional classes found in the patterns")
 argparser.add_argument("-m", "--mode", choices = ['c', 'g'],
                            help="'g' for guesser, 'c' for converter",
                            default="c")
 args = argparser.parse_args()
 
 patfile = open(args.patterns, "r")
-patrdr = csv.DictReader(patfile, delimiter=';')
+pat_rdr = csv.DictReader(patfile, delimiter=';')
 prevID = ";;;"
-for r in patrdr:
-    i, nx, mfon = r['ID'], r['NEXT'], r['MPHON']
-    if i != "" and i[0] == '!': continue
-    id = prevID if i == '' else i
-    prevID = id
-    if id == "Define":
-        definitions[nx] = mfon
-    elif id == "Root":
-        regex = re.sub(r"^\s*<(.*)>\s*$", r"\1", mfon)
-        if nx in patterns:
-            patterns[nx].append(regex)
-        else:
-            patterns[nx] = [regex]
+for r in pat_rdr:
+    cont, i_class, mfon, comment = r['CONT'], r['ICLASS'], r['MPHON'], r['COMMENT']
+    if cont != "" and cont[0] == '!': continue
+    if cont == "Define":
+        definitions[i_class] = mfon
+    else:
+        cont_set.add(cont)
+        iclass_set.add(i_class)
+        m = re.match(r"^\s*(<.*>)\s*([0-9]*)\s*$", mfon)
+        if m:                             # it looks like a reg ex pattern
+            regex = m.group(1)
+            weight = m.group(2)
+            pattern_lst.append((cont, i_class, regex, weight, comment))
+            continue
+        m = re.match(r"^\s*([a-zåäöšž']+):([a-zåäöšžA-ZÅÄÖŠŽ{Ø'}]+)\s*([0-9]*)\s*$", mfon)
+        #print(cont, i_class, mfon)###
+        if m:                             # it looks like a direct result for a single entry
+            singleton_lst.append((cont, i_class,
+                                      m.group(1), m.group(2), m.group(3),
+                                      comment))
+        else:                             # not valid at all
+            print("***", r, "***")
 
 patfile.close()
+#print(singleton_lst)###
 
-contfile = open(args.continuations, "r")
-contrdr = csv.DictReader(contfile, delimiter=';')
-for r in contrdr:
-    id, nx = r['ID'], r['NEXT']
-    conts[id] = nx
-
-for ic,el in patterns.items():
-    for e in el:
-        extract_multichs(e)
+for cont, iclass, pat, weight, comment in pattern_lst:
+    extract_multichs(pat[1:-1])
 for dn,pe in definitions.items():
     extract_multichs(pe)
-for name in conts:
-    multichs.add(conts[name])
 
 if args.mode == 'c':
     ksk2entrylex()
@@ -137,3 +149,8 @@ elif args.mode == 'g':
     ksk2guesserlex()
 else:
     print("value of --mode must be either 'g' or 'c'")
+    exit()
+if args.classes:
+    class_file = open(args.classes, "w")
+    print(" ".join(list(iclass_set)), file=class_file)
+    class_file.close()

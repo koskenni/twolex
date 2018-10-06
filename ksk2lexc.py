@@ -4,9 +4,10 @@
 import re, sys, hfst, argparse
 argparser = argparse.ArgumentParser("python3 ksk2lexc.py",
                                      description="Converts KSK entries into LEXC format")
-argparser.add_argument("-k", "--ksk")
-argparser.add_argument("-l", "--lexc", default="samp-words.lexc")
+argparser.add_argument("-k", "--ksk", default="~/Dropbox/lang/fin/ksk/ksk-v.dic")
+argparser.add_argument("-l", "--lexc", default="ksk-words.lexc")
 argparser.add_argument("-f", "--fst", default="fin-conv.fst")
+argparser.add_argument("-c", "--codes", default="infl-codes.text")
 args = argparser.parse_args()
 
 
@@ -14,6 +15,7 @@ fstfile = hfst.HfstInputStream(args.fst)
 fst = fstfile.read()
 fst.lookup_optimize()
 outf = open(args.lexc, "w")
+infl_set =  set(open(args.codes).read().split())
 entrylist = []
 multich = set()
 def find_multichars(str):
@@ -37,19 +39,22 @@ for linenl in sys.stdin:
         infl = lst[1] + lst[2]
     else:
         infl = lst[1]
+    if infl not in infl_set:
+        continue
     if not re.match(r"^[a-zšžåäö']+$", word) and re.match(r"^V[0-9][0-9][*]?", infl):
         print("", linenum, ":", '"' + line + '"')
         continue
-    if infl == "V41" and re.match(r"^[hjklmnprstv]*[äöye].*t[aä]$", word):
-        infl = "V41ä"
-    elif infl == "V42" and re.match(r"^.*nt(aa|ää)$", word):
-        infl = "V42n"
+    #if infl == "V41" and re.match(r"^[hjklmnprstv]*[äöye].*t[aä]$", word):
+    #    infl = "V41ä"
+    #elif infl == "V42" and re.match(r"^.*nt(aa|ää)$", word):
+    #    infl = "V42n"
+    iclass = infl#.replace('0', 'O')
     symlist = list(word)
-    symlist.append(infl)
+    symlist.append(iclass)
     symtup = tuple(symlist)
     res = fst.lookup(symtup)
     if not res:
-        print(linenum, ':', line)
+        print(linenum, ':', line, "".join(symlist))
     for r, w in res:
         mf, cont = re.split(r" +", r)
         find_multichars(mf)
